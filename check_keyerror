@@ -20,9 +20,7 @@ exit_warning = exit_fn('WARNING', 1)
 exit_critical = exit_fn('CRITICAL', 2)
 
 def main(api_key, interval, warning, critical):
-    timestamp = time.time() - (int(interval) * 60)
-
-    url = 'http://api.keyerror.com/v1/errors/since/%d' % timestamp
+    url = 'http://api.keyerror.com/v1/errors/recent/%d' % int(interval)
 
     request = urllib2.Request(url, headers={
         'X-API-Key': api_key,
