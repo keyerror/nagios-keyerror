@@ -3,7 +3,6 @@
 import sys
 import time
 import urllib2
-import datetime
 
 try:
     import json
@@ -21,9 +20,7 @@ exit_warning = exit_fn('WARNING', 1)
 exit_critical = exit_fn('CRITICAL', 2)
 
 def main(api_key, interval, warning, critical):
-    epoch = datetime.datetime.utcnow() - \
-        datetime.timedelta(seconds=int(interval))
-    timestamp = time.mktime(epoch.timetuple())
+    timestamp = time.time() - (int(interval) * 60)
 
     url = 'http://api.keyerror.com/v1/errors/since/%d' % timestamp
 
